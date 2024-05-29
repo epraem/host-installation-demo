@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 /* You can add global styles to this file, and also import other style files */
 // Theme Colors
 $color-danger: #e73535 !default;
@@ -78,7 +80,7 @@ $line-height-md: 28px !default;
 $line-height-lg: 32px !default;
 
 // Font Family
-$nunito: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$nunito: "Nunito", sans-serif;
 
 // Modifier for padding and font size for different sizes
 $size-modifier-small: 0.75 !default;
@@ -127,8 +129,7 @@ $font-size-extra-large: $base-font-size * $size-modifier-extra-large;
 
 * {
   font-family: $nunito;
-}
-
-div {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }

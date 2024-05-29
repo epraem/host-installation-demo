@@ -1,28 +1,26 @@
 @import "../../../styles.scss";
 
 .card {
-    width: fit-content;
-    height: 100%;
-    border-radius: 10px;
-    padding: $base-padding-xlg;
+  height: 100%;
+  border-radius: 10px;
 
-    &--shadow-1 {
-        box-shadow: $shadow-1;
-    }
+  &--shadow-1 {
+    box-shadow: $shadow-1;
+  }
 
-    &--shadow-2 {
-        box-shadow: $shadow-2;
-    }
+  &--shadow-2 {
+    box-shadow: $shadow-2;
+  }
 
-    &--shadow-3 {
-        box-shadow: $shadow-3;
-    }
+  &--shadow-3 {
+    box-shadow: $shadow-3;
+  }
 
-    &--shadow-4 {
-        box-shadow: $shadow-4;
-    }
+  &--shadow-4 {
+    box-shadow: $shadow-4;
+  }
 
-    &--shadow-5 {
-        box-shadow: $shadow-5;
-    }
+  &--shadow-5 {
+    box-shadow: $shadow-5;
+  }
 }

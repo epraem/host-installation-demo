@@ -1,0 +1,41 @@
+@import "../../../styles.scss";
+
+.formatted-text {
+    color: $color-dark;
+    display: block;
+    font-weight: normal;
+
+    &--larger {
+        font-size: $h1;
+        font-weight: bold;
+        line-height: $h1;
+    }
+
+    &--large {
+        font-size: $h2;
+        font-weight: bold;
+        line-height: $h2;
+    }
+
+    &--heading {
+        font-size: $h3;
+        font-weight: bold;
+        line-height: $h3;
+    }
+
+    &--paragraph {
+        font-size: $lg;
+    }
+
+    &--small {
+        font-size: $sm;
+    }
+
+    &--bold {
+        font-weight: bold;
+    }
+
+    &--normal {
+        font-weight: normal;
+    }
+}

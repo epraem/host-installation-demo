@@ -9,8 +9,3 @@ export const TEXT_TYPES: TextTypes[] = ['larger', 'large', 'heading', 'paragraph
  */
 export type FontWeights = 'bold' | 'normal';
 export const FONT_WEIGHTS: FontWeights[] = ['bold', 'normal'];
-
-export interface TextConfig {
-    fontSize: number;
-    fontWeight: number;
-}
