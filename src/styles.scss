@@ -1,1 +1,134 @@
 /* You can add global styles to this file, and also import other style files */
+// Theme Colors
+$color-danger: #e73535 !default;
+$color-invalid: #ff0000 !default;
+$color-gray: #e7e8ed !default;
+$color-info: #17a2b8 !default;
+$color-primary: #091635 !default;
+$color-secondary: #8dcb2c !default;
+$color-success: #8dcb2c !default;
+$color-warning: #ffc107 !default;
+$color-dark: #000000 !default;
+$color-light: #ffffff !default;
+
+//Shades of Gray
+$color-gray-1: #343f59 !default;
+$color-gray-2: #646c80 !default;
+$color-gray-3: #838999 !default;
+$color-gray-4: #9ba0ac !default;
+$color-gray-5: #afb3bd !default;
+$color-gray-6: #c0c4cc !default;
+$color-gray-7: #d0d3d9 !default;
+$color-gray-8: #d7dadf !default;
+$color-gray-9: #e7e8ed !default;
+$color-gray-10: #eeeef1 !default;
+$color-gray-11: #f2f2f5 !default;
+$color-gray-12: #f8f8f9 !default;
+
+//Shades of Green
+$color-green-1: #fcfff6 !default;
+$color-green-2: #fbfff2 !default;
+$color-green-3: #f6fbea !default;
+$color-green-4: #e1f2c1 !default;
+$color-green-5: #cae695 !default;
+$color-green-6: #b0da66 !default;
+$color-green-7: #96ce35 !default;
+$color-green-8: #7dba0e !default;
+$color-green-9: #6ca20e !default;
+$color-green-10: #5b860e !default;
+$color-green-11: #45650d !default;
+$color-green-12: #26360a !default;
+
+// Theme Shadows
+$shadow-1: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+
+$shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+$shadow-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+$shadow-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+$shadow-5: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+$input-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.05);
+
+// Define base padding and font size
+
+$base-padding-xs: 5px !default;
+$base-padding-sm: 10px !default;
+$base-padding-lg: 20px !default;
+$base-padding-xlg: 30px !default;
+$base-font-size: 14px !default;
+
+// Font Sizes
+$h1: 40px;
+$h2: 32px;
+$h3: 28px;
+$h4: 24px;
+$h5: 20px;
+$h6: 18px;
+$lg: 16px;
+$md: 14px;
+$sm: 12px;
+$xs: 10px;
+
+// Line Height
+$line-height-sm: 24px !default;
+$line-height-md: 28px !default;
+$line-height-lg: 32px !default;
+
+// Font Family
+$nunito: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Modifier for padding and font size for different sizes
+$size-modifier-small: 0.75 !default;
+$size-modifier-medium: 1 !default;
+$size-modifier-large: 1.25 !default;
+$size-modifier-extra-large: 1.5 !default;
+
+// Calculate sizes based on the base and modifier
+$padding-vertical-small: $base-padding-sm * $size-modifier-small;
+$padding-horizontal-small: $base-padding-lg * $size-modifier-small;
+$font-size-small: $base-font-size * $size-modifier-small;
+
+$padding-vertical-medium: $base-padding-sm * $size-modifier-medium;
+$padding-horizontal-medium: $base-padding-lg * $size-modifier-medium;
+$font-size-medium: $base-font-size * $size-modifier-medium;
+
+$padding-vertical-large: $base-padding-sm * $size-modifier-large;
+$padding-horizontal-large: $base-padding-lg * $size-modifier-large;
+$font-size-large: $base-font-size * $size-modifier-large;
+
+$padding-vertical-extra-large: $base-padding-sm * $size-modifier-extra-large;
+$padding-horizontal-extra-large: $base-padding-lg * $size-modifier-extra-large;
+$font-size-extra-large: $base-font-size * $size-modifier-extra-large;
+
+// Function to determine if the color is light or dark
+@function color-is-light($color) {
+  // Extract the red, green, and blue components of the color
+  $red: red($color);
+  $green: green($color);
+  $blue: blue($color);
+
+  // Calculate the luminance of the color
+  $luminance: (0.299 * $red + 0.587 * $green + 0.114 * $blue) / 255;
+
+  // Return true if the color is light, false if dark
+  @return $luminance > 0.5;
+}
+
+// Mixin to apply text color based on background
+@mixin adaptive-text-color($background-color) {
+  background-color: $background-color;
+
+  // Apply white text if background is dark, black if it's light
+  color: if(color-is-light($background-color), $color-dark, $color-light);
+}
+
+* {
+  font-family: $nunito;
+}
+
+div {
+  box-sizing: border-box;
+}

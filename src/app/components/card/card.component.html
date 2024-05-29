@@ -1,0 +1,9 @@
+<div
+  class="card"
+  [ngClass]="getClass()"
+  [style.background-color]="config().backgroundColor"
+  [style.padding]="config().sidePadding + 'rem'"
+  [style.width]="config().cardSize"
+>
+  <ng-content></ng-content>
+</div>
