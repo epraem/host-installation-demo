@@ -76,7 +76,7 @@
               [clickable]="sidebarClickable"
               [showSteps]="true"
               [steps]="sidebarSteps"
-              [currentStep]="sidebarCurrentStep"
+              [currentStep]="(sidebarCurrentStep$ | async)!"
               (stepClick)="goToStep($event)"
             ></app-stepper>
           </div>
@@ -94,19 +94,74 @@
             [orientation]="formOrientation"
             [clickable]="sidebarClickable"
             [showSteps]="false"
-            [steps]="formSteps"
-            [currentStep]="formCurrentStep"
+            [steps]="(formSteps$ | async)!"
+            [currentStep]="(formCurrentStep$ | async)!"
             (stepClick)="goToFormStep($event)"
           ></app-stepper>
         </app-card>
 
         <app-card style="height: 100%">
-          <div style="display: flex; flex-direction: column; gap: 10px">
-            <app-text [textContent]="title" [textType]="'heading'"></app-text>
-            <app-text
-              [textContent]="'Lorem ipsum dolor sit amet.'"
-              [textType]="'small'"
-            ></app-text>
+          <div style="height: 100%; display: flex; flex-direction: column">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                height: 100%;
+              "
+            >
+              <div style="display: flex; flex-direction: column; height: 100%">
+                <div style="display: flex; flex-direction: column; gap: 8px">
+                  <app-text
+                    [textContent]="getCurrentTitle()"
+                    [textType]="'heading'"
+                  ></app-text>
+                  <app-text
+                    [textContent]="getCurrentFormLabel()"
+                    [textType]="'small'"
+                  ></app-text>
+                </div>
+
+                <div
+                  *ngFor="let field of getCurrentFormStepFields()"
+                  class="stepper--form-forms"
+                >
+                  <ng-container *ngIf="field.dummyData; else inputTemplate">
+                    <app-autocomplete
+                      [leftIconSvg]="field.leftIconSvg || ''"
+                      [rightIconSvg]="field.rightIconSvg || ''"
+                      [autocompleteData]="field.dummyData"
+                      [placeholder]="field.placeholder"
+                      [label]="field.label"
+                      (optionSelected)="handleOptionSelected($event)"
+                    ></app-autocomplete>
+                  </ng-container>
+                  <ng-template #inputTemplate>
+                    <app-input
+                      [placeholder]="field.placeholder"
+                      [label]="field.label"
+                    ></app-input>
+                  </ng-template>
+                </div>
+              </div>
+
+              <div class="stepper--buttons">
+                <app-button
+                  *ngIf="
+                    (formCurrentStep$ | async)! > 0 ||
+                    (sidebarCurrentStep$ | async)! > 0
+                  "
+                  [type]="'primary'"
+                  [label]="'Back'"
+                  (click)="onBack()"
+                ></app-button>
+                <app-button
+                  [type]="'secondary'"
+                  [label]="getNextButtonLabel()"
+                  (click)="onNext()"
+                ></app-button>
+              </div>
+            </div>
           </div>
         </app-card>
       </div>

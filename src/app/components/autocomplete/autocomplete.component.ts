@@ -8,6 +8,8 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   HostListener,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -70,6 +72,11 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
    * Flag indicating whether to show the right icon.
    */
   @Input() showRightIcon = true;
+
+  /**
+   * Return the selected option.
+   */
+  @Output() optionSelected = new EventEmitter<any>(); 
 
   /**
    * Sanitized version of the left icon SVG to prevent XSS attacks.
@@ -232,6 +239,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     this.isActive = false;
     this.toggleDropdown();
     this.filteredData = this.autocompleteData;
+    this.optionSelected.emit(option);
   }
 
   /**
@@ -241,8 +249,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     this.selectedOption = null;
     this.showInput = true;
     this.filteredData = this.autocompleteData;
-
-    // Clear input and trigger search AFTER the view is updated
+  
     setTimeout(() => {
       this.attachInputEventListener();
       if (this.searchInput && this.searchInput.nativeElement) {
@@ -250,6 +257,8 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         this.searchInput.nativeElement.dispatchEvent(new Event('input'));
       }
     });
+  
+    this.optionSelected.emit(null); // Emit null to indicate selection is cleared
   }
 
   /**

@@ -1,59 +1,79 @@
 <div class="autocomplete" [ngClass]="getClass()">
-    <label *ngIf="hasLabel">{{ label }}</label>
-    <div class="dropdown--wrapper">
-        <div class="dropdown--input" *ngIf="showInput" [class.active]="isActive">
-            <div class="icon" *ngIf="showLeftIcon" [innerHTML]="sanitizedLeftIconSvg"></div>
-            <input
-                [ngClass]="getClass()"
-                [placeholder]="placeholder"
-                #searchInput
-                class="input"
-                type="text"
-                (focus)="isActive = true; toggleDropdown()"
-            />
-            <div class="icon" *ngIf="showRightIcon" [innerHTML]="sanitizedRightIconSvg"></div>
-        </div>
-
-        <div *ngIf="!showInput" class="dropdown--input option-selected">
-            <div class="dropdown--input-field">
-                <div class="icon" *ngIf="showLeftIcon" [innerHTML]="sanitizedLeftIconSvg"></div>
-                <div class="dropdown--input-selected">
-                    {{ selectedOption.name }}
-                    <svg
-                        (click)="clearSelection()"
-                        width="7"
-                        height="7"
-                        viewBox="0 0 10 10"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M1.28033 0.21967C0.987437 -0.0732233 0.512563 -0.0732233 0.21967 0.21967C-0.0732233 0.512563 -0.0732233 0.987437 0.21967 1.28033L3.93934 5L0.21967 8.71967C-0.0732233 9.01256 -0.0732233 9.48744 0.21967 9.78033C0.512563 10.0732 0.987437 10.0732 1.28033 9.78033L5 6.06066L8.71967 9.78033C9.01256 10.0732 9.48744 10.0732 9.78033 9.78033C10.0732 9.48744 10.0732 9.01256 9.78033 8.71967L6.06066 5L9.78033 1.28033C10.0732 0.987437 10.0732 0.512563 9.78033 0.21967C9.48744 -0.0732233 9.01256 -0.0732233 8.71967 0.21967L5 3.93934L1.28033 0.21967Z"
-                            fill="#343f59"
-                            stroke="#343f59"
-                            stroke-width=".7"
-                        />
-                    </svg>
-                </div>
-            </div>
-            <div class="icon" *ngIf="showRightIcon" [innerHTML]="sanitizedRightIconSvg"></div>
-        </div>
-        <div class="dropdown--list">
-            <div #dropdownWrapper class="dropdown" [ngClass]="{ active: isActive, inactive: !isActive }">
-                <div class="dropdown--content">
-                    <ul class="dropdown--options">
-                        <li *ngFor="let option of filteredData" (click)="optionSelect(option)">
-                            {{ option.name }}
-                        </li>
-                        <li *ngIf="filteredData.length === 0" class="not-found">Not Found</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="output" *ngIf="selectedOption">
-            <h2>Selected Option</h2>
-            <h4>NAME : {{ selectedOption.name }}</h4>
-            <p>ID : {{ selectedOption.id }}</p>
-        </div>
+  <label *ngIf="hasLabel">{{ label }}</label>
+  <div class="dropdown--wrapper">
+    <div class="dropdown--input" *ngIf="showInput" [class.active]="isActive">
+      <div
+        class="icon"
+        *ngIf="showLeftIcon"
+        [innerHTML]="sanitizedLeftIconSvg"
+      ></div>
+      <input
+        [ngClass]="getClass()"
+        [placeholder]="placeholder"
+        #searchInput
+        class="input"
+        type="text"
+        (focus)="isActive = true; toggleDropdown()"
+      />
+      <div
+        class="icon"
+        *ngIf="showRightIcon"
+        [innerHTML]="sanitizedRightIconSvg"
+      ></div>
     </div>
+
+    <div *ngIf="!showInput" class="dropdown--input option-selected">
+      <div class="dropdown--input-field">
+        <div
+          class="icon"
+          *ngIf="showLeftIcon"
+          [innerHTML]="sanitizedLeftIconSvg"
+        ></div>
+        <div class="dropdown--input-selected">
+          {{ selectedOption.name }}
+          <svg
+            (click)="clearSelection()"
+            width="7"
+            height="7"
+            viewBox="0 0 10 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.28033 0.21967C0.987437 -0.0732233 0.512563 -0.0732233 0.21967 0.21967C-0.0732233 0.512563 -0.0732233 0.987437 0.21967 1.28033L3.93934 5L0.21967 8.71967C-0.0732233 9.01256 -0.0732233 9.48744 0.21967 9.78033C0.512563 10.0732 0.987437 10.0732 1.28033 9.78033L5 6.06066L8.71967 9.78033C9.01256 10.0732 9.48744 10.0732 9.78033 9.78033C10.0732 9.48744 10.0732 9.01256 9.78033 8.71967L6.06066 5L9.78033 1.28033C10.0732 0.987437 10.0732 0.512563 9.78033 0.21967C9.48744 -0.0732233 9.01256 -0.0732233 8.71967 0.21967L5 3.93934L1.28033 0.21967Z"
+              fill="#343f59"
+              stroke="#343f59"
+              stroke-width=".7"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="icon"
+        *ngIf="showRightIcon"
+        [innerHTML]="sanitizedRightIconSvg"
+      ></div>
+    </div>
+    <div class="dropdown--list">
+      <div
+        #dropdownWrapper
+        class="dropdown"
+        [ngClass]="{ active: isActive, inactive: !isActive }"
+      >
+        <div class="dropdown--content">
+          <ul class="dropdown--options">
+            <li
+              *ngFor="let option of filteredData"
+              (click)="optionSelect(option)"
+            >
+              {{ option.name }}
+            </li>
+            <li *ngIf="filteredData.length === 0" class="not-found">
+              Not Found
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
