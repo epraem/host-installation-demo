@@ -1,9 +1,8 @@
 <div
-  class="card"
-  [ngClass]="getClass()"
-  [style.background-color]="config().backgroundColor"
-  [style.padding]="config().sidePadding + 'rem'"
-  [style.width]="config().cardSize"
+    class="card"
+    [ngClass]="getClass()"
+    [style.background-color]="backgroundColor"
+    [ngStyle]="{ 'padding': sidePadding ? sidePadding + 'em' : null, 'width': cardSize }"
 >
-  <ng-content></ng-content>
+    <ng-content></ng-content>
 </div>

@@ -1,0 +1,55 @@
+@import "../styles.scss";
+
+.layout {
+  max-width: 1440px;
+  margin: auto;
+  height: 100vh;
+  padding: 60px;
+}
+
+.stepper {
+  display: flex;
+  height: 100%;
+  gap: 15px;
+
+  &--sidebar {
+    &-inside {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
+
+      svg {
+        height: auto;
+      }
+
+      app-stepper {
+        height: 100%;
+      }
+    }
+  }
+
+  &--form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &-forms {
+      display: flex;
+      gap: $base-padding-xs;
+
+      > * {
+        width: 100%;
+      }
+    }
+  }
+
+  &--buttons {
+    display: flex;
+    gap: $base-padding-xs;
+  }
+}

@@ -1,5 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-// Theme Colors
+/**
+ * Theme Colors
+ * Variables for theme colors used throughout the application.
+ */
 $color-danger: #e73535 !default;
 $color-invalid: #ff0000 !default;
 $color-gray: #e7e8ed !default;
@@ -11,7 +13,10 @@ $color-warning: #ffc107 !default;
 $color-dark: #000000 !default;
 $color-light: #ffffff !default;
 
-//Shades of Gray
+/**
+ * Shades of Gray
+ * Variables for various shades of gray used throughout the application.
+ */
 $color-gray-1: #343f59 !default;
 $color-gray-2: #646c80 !default;
 $color-gray-3: #838999 !default;
@@ -25,7 +30,10 @@ $color-gray-10: #eeeef1 !default;
 $color-gray-11: #f2f2f5 !default;
 $color-gray-12: #f8f8f9 !default;
 
-//Shades of Green
+/**
+ * Shades of Green
+ * Variables for various shades of green used throughout the application.
+ */
 $color-green-1: #fcfff6 !default;
 $color-green-2: #fbfff2 !default;
 $color-green-3: #f6fbea !default;
@@ -39,28 +47,31 @@ $color-green-10: #5b860e !default;
 $color-green-11: #45650d !default;
 $color-green-12: #26360a !default;
 
-// Theme Shadows
+/**
+ * Shadows
+ * Variables for various shadow effects used throughout the application.
+ */
 $shadow-1: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
-
 $shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-
 $shadow-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-
 $shadow-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
 $shadow-5: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-
 $input-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.05);
 
-// Define base padding and font size
-
+/**
+ * Base Padding and Font Size
+ * Variables for base padding and font size used throughout the application.
+ */
 $base-padding-xs: 5px !default;
 $base-padding-sm: 10px !default;
 $base-padding-lg: 20px !default;
 $base-padding-xlg: 30px !default;
 $base-font-size: 14px !default;
 
-// Font Sizes
+/**
+ * Font Sizes
+ * Variables for various font sizes used throughout the application.
+ */
 $h1: 40px;
 $h2: 32px;
 $h3: 28px;
@@ -72,21 +83,33 @@ $md: 14px;
 $sm: 12px;
 $xs: 10px;
 
-// Line Height
+/**
+ * Line Height
+ * Variables for various line heights used throughout the application.
+ */
 $line-height-sm: 24px !default;
 $line-height-md: 28px !default;
 $line-height-lg: 32px !default;
 
-// Font Family
-$nunito: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+/**
+ * Font Family
+ * Variable for the font family used throughout the application.
+ */
+$nunito: "Nunito", sans-serif;
 
-// Modifier for padding and font size for different sizes
+/**
+ * Size Modifiers
+ * Variables for modifying the size of padding and font size.
+ */
 $size-modifier-small: 0.75 !default;
 $size-modifier-medium: 1 !default;
 $size-modifier-large: 1.25 !default;
 $size-modifier-extra-large: 1.5 !default;
 
-// Calculate sizes based on the base and modifier
+/**
+ * Calculated Sizes
+ * Calculated variables for padding and font size based on base values and modifiers.
+ */
 $padding-vertical-small: $base-padding-sm * $size-modifier-small;
 $padding-horizontal-small: $base-padding-lg * $size-modifier-small;
 $font-size-small: $base-font-size * $size-modifier-small;
@@ -103,32 +126,37 @@ $padding-vertical-extra-large: $base-padding-sm * $size-modifier-extra-large;
 $padding-horizontal-extra-large: $base-padding-lg * $size-modifier-extra-large;
 $font-size-extra-large: $base-font-size * $size-modifier-extra-large;
 
-// Function to determine if the color is light or dark
+/**
+ * Function: color-is-light
+ * Determines if the color is light or dark.
+ * @param {Color} $color - The color to evaluate.
+ * @returns {Boolean} - True if the color is light, false if dark.
+ */
 @function color-is-light($color) {
-  // Extract the red, green, and blue components of the color
   $red: red($color);
   $green: green($color);
   $blue: blue($color);
-
-  // Calculate the luminance of the color
-  $luminance: (0.299 * $red + 0.587 * $green + 0.114 * $blue) / 255;
-
-  // Return true if the color is light, false if dark
+  $luminance: calc((0.299 * $red + 0.587 * $green + 0.114 * $blue) / 255);
   @return $luminance > 0.5;
 }
 
-// Mixin to apply text color based on background
+/**
+ * Mixin: adaptive-text-color
+ * Applies text color based on the background color.
+ * @param {Color} $background-color - The background color.
+ */
 @mixin adaptive-text-color($background-color) {
   background-color: $background-color;
-
-  // Apply white text if background is dark, black if it's light
   color: if(color-is-light($background-color), $color-dark, $color-light);
 }
 
+/**
+ * Global Reset
+ * Resets basic styles for consistent styling across browsers.
+ */
 * {
   font-family: $nunito;
-}
-
-div {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }

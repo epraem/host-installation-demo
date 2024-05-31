@@ -1,0 +1,11 @@
+<button
+    class="btn"
+    [style.background-color]="backgroundColor"
+    [style.color]="textColor"
+    [ngClass]="getClass()"
+    [disabled]="disabled"
+>
+    <i *ngIf="iconLeft" class="icon-left {{ iconLeft }}"></i>
+    {{ label }}
+    <i *ngIf="iconRight" class="icon-right {{ iconRight }}"></i>
+</button>
