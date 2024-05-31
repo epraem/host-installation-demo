@@ -145,6 +145,7 @@ export class AppComponent {
       title: 'Create a Host',
       steps: [
         { label: 'Search Hostplace', completed: false },
+        // THIS SHOULD BE BASED ON THE SECOND STEP INPUTS
         { label: 'Create Hostplace', completed: true },
       ],
     },
